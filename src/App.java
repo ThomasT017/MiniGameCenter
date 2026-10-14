@@ -1,15 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
 public class App {
-    public static void playBlackjack(){
-        System.out.println("You have switched to blackjack!");
-        boolean running = false;
-
-    }
-    public static void playGuessTheNumber(){
-        System.out.println("You have switched to guess the number!");
-        boolean running = false;
-    }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
@@ -33,10 +24,10 @@ public class App {
 
                 // Conditional statements to control the menu flow
                 if (choice == 1) {
-                    playBlackjack();
+                    Blackjack.play(scanner, random);
                 } 
                 else if (choice == 2) {
-                    playGuessTheNumber();
+                    Guessthenumber.play(scanner, random);
                 } 
                 else if (choice == 3) {
                     System.out.println("\nThanks for playing! Goodbye!");
@@ -50,8 +41,5 @@ public class App {
                 scanner.next(); // Clear the invalid input from the scanner buffer
             }
         }
-       
-            
-
     }
 }
