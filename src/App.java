@@ -25,9 +25,11 @@ public class App {
                 // Conditional statements to control the menu flow
                 if (choice == 1) {
                     Blackjack.play(scanner, random);
+                    running = false;
                 } 
                 else if (choice == 2) {
                     Guessthenumber.play(scanner, random);
+                    running = false;
                 } 
                 else if (choice == 3) {
                     System.out.println("\nThanks for playing! Goodbye!");
