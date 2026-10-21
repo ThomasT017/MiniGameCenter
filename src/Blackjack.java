@@ -24,13 +24,38 @@ public class Blackjack {
                     break;
                 }
             }
-            if (choice.equals("Stand")) {
+            if (choice.equals("stand")) {
+                DealerTurn(dealerTotal, random);
                 break;
             }
             else {
                 System.out.println("Do you want to hit or stand?");
             }
         }
-
     }
-}
+
+
+        public static void DealerTurn(int dealerTotal, Random random) 
+            {
+            boolean dealerTurn = true;
+            while (dealerTurn) {
+                int dChoice = random.nextInt(2) + 1;
+                if (dChoice == 1) {
+                    int card = random.nextInt(10) + 2;
+                    dealerTotal += card;
+                    if (dealerTotal > 21) {
+                    System.out.println("You win by dealer bust");
+                    break;
+                    }
+                }
+                if (dChoice == 2) {
+                break;
+                }
+                else {
+                System.out.println("Do you want to hit or stand?");
+                }
+            }
+        }
+    }
+
+
