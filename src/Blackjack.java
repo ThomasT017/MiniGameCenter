@@ -6,56 +6,69 @@ public class Blackjack {
         System.out.println("\n--- SIMPLIFIED BLACKJACK ---");
         int playerTotal = random.nextInt(10) + 2;
         int dealerTotal = random.nextInt(6) + 12;
-        Scanner input = new Scanner(System.in);
 
-        boolean playerTurn = true;
-        while (playerTurn) {
+        while (true) {
             System.out.println("Your current total: " + playerTotal);
+            pause();
             System.out.println("Dealer's current total: " + dealerTotal);
+            pause();
             System.out.println("Do you want to hit or stand?");
-            String choice = input.next();
-            if (choice.equals("hit")) {
+
+            String choice = scanner.next();
+            
+            if (choice.equalsIgnoreCase("hit")) {
                 int card = random.nextInt(10) + 2;
                 System.out.println("You pulled a " + card + "!");
+                pause();
                 playerTotal += card;
-                System.out.println("Your current total: " + playerTotal);
                 if (playerTotal > 21) {
-                    System.out.println("You busted you friggin loser");
-                    break;
+                    System.out.println("You busted! Dealer wins.");
+                    return;
                 }
-            }
-            if (choice.equals("stand")) {
-                DealerTurn(dealerTotal, random);
-                break;
-            }
-            else {
-                System.out.println("Do you want to hit or stand?");
-            }
-        }
-    }
 
-
-        public static void DealerTurn(int dealerTotal, Random random) 
-            {
-            boolean dealerTurn = true;
-            while (dealerTurn) {
-                int dChoice = random.nextInt(2) + 1;
-                if (dChoice == 1) {
-                    int card = random.nextInt(10) + 2;
-                    dealerTotal += card;
-                    if (dealerTotal > 21) {
-                    System.out.println("You win by dealer bust");
-                    break;
-                    }
-                }
-                if (dChoice == 2) {
-                break;
-                }
-                else {
-                System.out.println("Do you want to hit or stand?");
-                }
+            } else if (choice.equalsIgnoreCase("stand")) {
+                DealerTurn(dealerTotal, playerTotal, random);
+                return;
+            } else {
+                System.out.println("Please enter hit or stand.");
             }
         }
     }
 
+    public static void DealerTurn(int dealerTotal, int playerTotal, Random random) {
+        while (dealerTotal < 17) {
+            int card = random.nextInt(10) + 2;
+            dealerTotal += card;
+            System.out.println("The dealer pulls a " + card + ".");
+            pause();
+            System.out.println("The dealer's total is " + dealerTotal);
+        }
 
+        if (dealerTotal > 21) {
+            System.out.println("Dealer busts! You win.");
+        } else {
+            comparison(dealerTotal, playerTotal);
+        }
+    }
+
+    public static void comparison(int dealerTotal, int playerTotal) {
+        System.out.println("----------------------");
+        System.out.println("Dealer Total: " + dealerTotal);
+        System.out.println("Player Total: " + playerTotal);
+        pause();
+        if (dealerTotal > playerTotal) {
+            System.out.println("Dealer Wins!");
+        } else if (playerTotal > dealerTotal) {
+            System.out.println("Player Wins!");
+        } else {
+            System.out.println("It's a tie!");
+        }
+    }
+    private static void pause() {
+        try {
+            Thread.sleep(1000); // Pause for 2 seconds
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+}
