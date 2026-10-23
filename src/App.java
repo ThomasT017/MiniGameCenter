@@ -21,11 +21,11 @@ public class App {
             // Validate that the user entered an integer
             if (scanner.hasNextInt()) {
                 int choice = scanner.nextInt();
+                
 
                 // Conditional statements to control the menu flow
                 if (choice == 1) {
                     Blackjack.play(scanner, random);
-                    running = false;
                 } 
                 else if (choice == 2) {
                     Guessthenumber.play(scanner, random);

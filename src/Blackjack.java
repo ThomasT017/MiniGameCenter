@@ -6,13 +6,14 @@ public class Blackjack {
         System.out.println("\n--- SIMPLIFIED BLACKJACK ---");
         int playerTotal = random.nextInt(10) + 2;
         int dealerTotal = random.nextInt(6) + 12;
+        boolean running = true;
 
-        while (true) {
+        while (running == true) {
             System.out.println("Your current total: " + playerTotal);
             pause();
             System.out.println("Dealer's current total: " + dealerTotal);
             pause();
-            System.out.println("Do you want to hit or stand?");
+            System.out.println("Do you want to /hit/stand/quit?");
 
             String choice = scanner.next();
             
@@ -28,9 +29,12 @@ public class Blackjack {
 
             } else if (choice.equalsIgnoreCase("stand")) {
                 DealerTurn(dealerTotal, playerTotal, random);
+                // return;
+            } else if (choice.equalsIgnoreCase("quit")) {
+                System.out.println("You quit the game.");
                 return;
             } else {
-                System.out.println("Please enter hit or stand.");
+                System.out.println("Please enter hit, stand, or quit.");
             }
         }
     }
@@ -58,8 +62,10 @@ public class Blackjack {
         pause();
         if (dealerTotal > playerTotal) {
             System.out.println("Dealer Wins!");
+            
         } else if (playerTotal > dealerTotal) {
             System.out.println("Player Wins!");
+            boolean running = false;
         } else {
             System.out.println("It's a tie!");
         }
