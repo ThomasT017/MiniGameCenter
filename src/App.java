@@ -28,7 +28,7 @@ public class App {
                     Blackjack.play(scanner, random);
                 } 
                 else if (choice == 2) {
-                    Guessthenumber.play(scanner, random);
+                    wordle.play();
                     running = false;
                 } 
                 else if (choice == 3) {
