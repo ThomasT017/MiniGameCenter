@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
 public class wordle {
-    public static void play(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
+    public static void play(Scanner scanner) {
         int randomChoice = (int) (Math.random() * 7);
         String secretWord = "";
 
@@ -29,12 +27,14 @@ public class wordle {
     System.out.println("Welcome to Wordle");
 
     while (currentAttempt <= maxAttempts && !hasWon) {
-        System.out.println("Attempt" + currentAttempt + "of" + maxAttempts);
+        System.out.println("Attempt " + currentAttempt + " of " + maxAttempts);
         System.out.println("Enter Your Guess!");
         String guess = scanner.next().toUpperCase();
 
-        if(guess.length() != 5) {
+    if(guess.length() != 5) {
             System.out.println("Guess must be exactly 5 letters");
+            pause();
+            continue;
     }
 
     String feedback = "";
@@ -51,7 +51,7 @@ public class wordle {
 
     }
     System.out.println("Your Guess: " + guess);
-    System.out.println("Feedback: " + feedback);
+    System.out.println("Feedback:   " + feedback);
     
 
     if (guess.equals(secretWord)) {
@@ -63,6 +63,15 @@ public class wordle {
     }
     if (!hasWon) {
         System.out.println("Game over! the secret word was " + secretWord);
+        System.out.println("Quit?");
+
     }
 }
+private static void pause() {
+        try {
+            Thread.sleep(1000); // Pause for 2 seconds
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
 }

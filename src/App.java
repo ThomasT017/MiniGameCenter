@@ -14,7 +14,7 @@ public class App {
             // Display Menu Options
             System.out.println("\n--- MAIN MENU ---");
             System.out.println("1. Play Blackjack (Simplified)");
-            System.out.println("2. Play Guess the Number");
+            System.out.println("2. Play Wordle");
             System.out.println("3. Exit");
             System.out.print("Please enter your choice (1-3): ");
 
@@ -28,7 +28,7 @@ public class App {
                     Blackjack.play(scanner, random);
                 } 
                 else if (choice == 2) {
-                    wordle.play();
+                    wordle.play(scanner);
                     running = false;
                 } 
                 else if (choice == 3) {
