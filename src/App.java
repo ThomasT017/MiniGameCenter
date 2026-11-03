@@ -29,7 +29,6 @@ public class App {
                 } 
                 else if (choice == 2) {
                     wordle.play(scanner);
-                    running = false;
                 } 
                 else if (choice == 3) {
                     System.out.println("\nThanks for playing! Goodbye!");

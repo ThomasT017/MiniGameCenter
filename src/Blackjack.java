@@ -8,11 +8,11 @@ public class Blackjack {
         int dealerTotal = random.nextInt(6) + 12;
         boolean running = true;
 
-        while (running == true) {
+        while (running) {
             System.out.println("Your current total: " + playerTotal);
-            pause();
+            GameUtils.pause();
             System.out.println("Dealer's current total: " + dealerTotal);
-            pause();
+            GameUtils.pause();
             System.out.println("Do you want to /hit/stand/quit?");
 
             String choice = scanner.next();
@@ -20,16 +20,19 @@ public class Blackjack {
             if (choice.equalsIgnoreCase("hit")) {
                 int card = random.nextInt(10) + 2;
                 System.out.println("You pulled a " + card + "!");
-                pause();
+                GameUtils.pause();
                 playerTotal += card;
                 if (playerTotal > 21) {
                     System.out.println("You busted! Dealer wins.");
+                    GameUtils.waitForQuit(scanner);
                     return;
                 }
 
             } else if (choice.equalsIgnoreCase("stand")) {
                 DealerTurn(dealerTotal, playerTotal, random);
-                // return;
+                GameUtils.waitForQuit(scanner);
+                return;
+                
             } else if (choice.equalsIgnoreCase("quit")) {
                 System.out.println("You quit the game.");
                 return;
@@ -38,43 +41,42 @@ public class Blackjack {
             }
         }
     }
-
+    
+    
     public static void DealerTurn(int dealerTotal, int playerTotal, Random random) {
         while (dealerTotal < 17) {
+        
             int card = random.nextInt(10) + 2;
             dealerTotal += card;
             System.out.println("The dealer pulls a " + card + ".");
-            pause();
+            GameUtils.pause();
             System.out.println("The dealer's total is " + dealerTotal);
         }
 
         if (dealerTotal > 21) {
             System.out.println("Dealer busts! You win.");
+            return;
+            
         } else {
             comparison(dealerTotal, playerTotal);
+        
         }
+    
     }
 
     public static void comparison(int dealerTotal, int playerTotal) {
         System.out.println("----------------------");
         System.out.println("Dealer Total: " + dealerTotal);
         System.out.println("Player Total: " + playerTotal);
-        pause();
+        GameUtils.pause();
         if (dealerTotal > playerTotal) {
             System.out.println("Dealer Wins!");
             
         } else if (playerTotal > dealerTotal) {
             System.out.println("Player Wins!");
-            boolean running = false;
         } else {
             System.out.println("It's a tie!");
         }
     }
-    private static void pause() {
-        try {
-            Thread.sleep(1000); // Pause for 2 seconds
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-    }
+
 }
