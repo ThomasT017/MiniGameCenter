@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class GameUtils {
     public static void waitForQuit(Scanner scanner) {
-        System.out.println("Type 'quit' to return to the main menu:");
+        System.out.println("\nType 'quit' to return to the main menu:");
         String endChoice = scanner.next();
         while (!endChoice.equalsIgnoreCase("quit")) {
             System.out.print("Invalid input. Type 'quit' to return to the main menu:");

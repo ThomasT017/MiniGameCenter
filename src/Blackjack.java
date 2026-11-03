@@ -10,16 +10,14 @@ public class Blackjack {
 
         while (running) {
             System.out.println("Your current total: " + playerTotal);
-            GameUtils.pause();
             System.out.println("Dealer's current total: " + dealerTotal);
             GameUtils.pause();
-            System.out.println("Do you want to /hit/stand/quit?");
+            System.out.println("\n|HIT|    |STAND|    |QUIT|");
 
             String choice = scanner.next();
-            
             if (choice.equalsIgnoreCase("hit")) {
                 int card = random.nextInt(10) + 2;
-                System.out.println("You pulled a " + card + "!");
+                System.out.println("\nYou pulled a " + card + "!");
                 GameUtils.pause();
                 playerTotal += card;
                 if (playerTotal > 21) {
@@ -30,6 +28,7 @@ public class Blackjack {
 
             } else if (choice.equalsIgnoreCase("stand")) {
                 DealerTurn(dealerTotal, playerTotal, random);
+                GameUtils.pause();
                 GameUtils.waitForQuit(scanner);
                 return;
                 
@@ -38,6 +37,7 @@ public class Blackjack {
                 return;
             } else {
                 System.out.println("Please enter hit, stand, or quit.");
+                choice = scanner.next();
             }
         }
     }

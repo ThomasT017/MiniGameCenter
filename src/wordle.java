@@ -69,6 +69,7 @@ public class wordle {
     if (guess.equals(secretWord)) {
         hasWon = true;
         System.out.println("You guessed the word right!");
+        GameUtils.pause();
         GameUtils.waitForQuit(scanner);
      } else {
             currentAttempt++;
@@ -76,6 +77,7 @@ public class wordle {
     }
     if (!hasWon) {
         System.out.println("Game over! the secret word was " + secretWord);
+        GameUtils.pause();
         GameUtils.waitForQuit(scanner);
 
     }
